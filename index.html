@@ -8,15 +8,34 @@
     <title>Michał Pawlak - Expert Front Developer Calculator App</title>
   </head>
   <body>
-    <main class="calculator">
-      <section class="calculator-display">
-        <div class="display">192-58</div>
-      </section>
-      <section class="calculator-inputs">
-        <div class="numerals">1 2 3 4 5 6 7 8 9 0</div>
-        <div class="operators">+ - * /</div>
-      </section>
-    </main>
+    <div class="container">
+      <main class="calculator">
+        <section class="calculator-display">
+          <div class="display"><div class="display-inner">192-58</div></div>
+        </section>
+        <section class="calculator-inputs">
+          <div class="numerals">
+            <div class="number-box"><span class="number">1</span></div>
+            <div class="number-box"><span class="number">2</span></div>
+            <div class="number-box"><span class="number">3</span></div>
+            <div class="number-box"><span class="number">4</span></div>
+            <div class="number-box"><span class="number">5</span></div>
+            <div class="number-box"><span class="number">6</span></div>
+            <div class="number-box"><span class="number">7</span></div>
+            <div class="number-box"><span class="number">8</span></div>
+            <div class="number-box"><span class="number">9</span></div>
+            <div class="number-box"><span class="number">0</span></div>
+          </div>
+          <div class="operators">
+            <div class="operator-box"><span class="operator">+</span></div>
+            <div class="operator-box"><span class="operator">-</span></div>
+            <div class="operator-box"><span class="operator">*</span></div>
+            <div class="operator-box"><span class="operator">/</span></div>
+          </div>
+          <div class="equals-box"><span class="equals-sign">=</span></div>
+        </section>
+      </main>
+    </div>
     <script src="script.js"></script>
   </body>
 </html>
