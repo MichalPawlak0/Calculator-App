@@ -21,10 +21,15 @@ let currentValue = 0;
 let operatorValue = 0;
 let operation = "";
 let clickedNumber = "";
+let calculatedValueString = "";
 
 function setClickedNrTo1AndContinue() {
-  clickedNumber = "1";
-  setCurrentValueOrOperatorValue();
+  if (operation !== "") {
+    clickedNumber = "1";
+    setCurrentValueOrOperatorValue();
+  } else {
+    displayChanges();
+  }
 }
 function setClickedNrTo2AndContinue() {
   clickedNumber = "2";
@@ -59,8 +64,21 @@ function setClickedNrTo9AndContinue() {
   setCurrentValueOrOperatorValue();
 }
 function setClickedNrTo0AndContinue() {
-  clickedNumber = "zero";
+  clickedNumber = "0";
   setCurrentValueOrOperatorValue();
+}
+
+function setOperationTypeToAddition() {
+  operation = "+";
+}
+function setOperationTypeToSubtraction() {
+  operation = "-";
+}
+function setOperationTypeToMultiplication() {
+  operation = "*";
+}
+function setOperationTypeToDivision() {
+  operation = "/";
 }
 
 function setCurrentValueOrOperatorValue() {
@@ -70,10 +88,6 @@ function setCurrentValueOrOperatorValue() {
   } else {
     setOperatorValueAndCalculate(clickedNumber);
   }
-}
-
-function setOperationType() {
-  operation = "+";
 }
 
 function setCurrentValue(nr) {
@@ -94,20 +108,24 @@ function calculate(current, op, operator) {
   }
 }
 
-function displayChanges(val) {
-  document.getElementsByClassName("display-inner")[0].innerHTML = val;
+function displayChanges() {
+  if (operation === "" && currentValue != 0) {
+    document.getElementsByClassName("display-inner")[0].innerHTML =
+      clickedNumber;
+  } else {
+    document.getElementsByClassName("display-inner")[0].innerHTML =
+      currentValue;
+    operation = "";
+  }
 }
 
 function setOperatorValueAndCalculate(nr) {
-  alert("clicked an operator");
   operatorValue = +nr;
 
   let calculatedValue = calculate(currentValue, operation, operatorValue);
   currentValue = calculatedValue;
-  let calculatedValueString = calculatedValue.toString();
-  displayChanges(calculatedValueString);
-
-  operation = "";
+  calculatedValueString = calculatedValue.toFixed(2);
+  // displayChanges();
   clickedNumber = "";
 }
 
@@ -121,4 +139,8 @@ nr7Btn.addEventListener("click", setClickedNrTo7AndContinue);
 nr8Btn.addEventListener("click", setClickedNrTo8AndContinue);
 nr9Btn.addEventListener("click", setClickedNrTo9AndContinue);
 nr0Btn.addEventListener("click", setClickedNrTo0AndContinue);
-addBtn.addEventListener("click", setOperationType);
+addBtn.addEventListener("click", setOperationTypeToAddition);
+subtractBtn.addEventListener("click", setOperationTypeToSubtraction);
+multiplyBtn.addEventListener("click", setOperationTypeToMultiplication);
+divideBtn.addEventListener("click", setOperationTypeToDivision);
+equalBtn.addEventListener("click", displayChanges);
