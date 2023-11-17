@@ -28,7 +28,7 @@ button {
 }
 .number-box:active button,
 .operator-box:active button,
-.equals-box:active button {
+.equals-sign:active,.clear-sign:active {
   font-size: 90%;
   box-shadow: inset 0px 0px 5px 1px #888;
 }
@@ -52,14 +52,18 @@ button {
   gap: 2vw;
 }
 .calculator-display {
-  height: 20%;
+  height: 27%;
   border: 1px solid #000;
   border-radius: 1rem;
   padding: 0.5rem;
   font-size: clamp(4rem, 5vw, 6rem);
   background-color: #aaa;
 }
+.display{
+  height: 100%;
+}
 .display-inner {
+  height: 100%;
   background-color: #eee;
   border-radius: 1rem;
   padding: clamp(0.5rem, 1vw, 1rem);
@@ -108,6 +112,16 @@ button {
   align-items: center;
   justify-content: center;
   font-size: 4rem;
+}
+.equals-sign{
+  border:#111 1px solid;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.clear-sign{
+  border:#111 1px solid;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
 }
 
 .operators {

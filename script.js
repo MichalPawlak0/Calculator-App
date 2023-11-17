@@ -1,146 +1,134 @@
-// const calculatorDisplayValue =
-//   +document.getElementsByClassName("display-inner")[0].innerHTML;
-// alert(calculatorDisplayValue);
-const nr1Btn = document.getElementById("nr1");
-const nr2Btn = document.getElementById("nr2");
-const nr3Btn = document.getElementById("nr3");
-const nr4Btn = document.getElementById("nr4");
-const nr5Btn = document.getElementById("nr5");
-const nr6Btn = document.getElementById("nr6");
-const nr7Btn = document.getElementById("nr7");
-const nr8Btn = document.getElementById("nr8");
-const nr9Btn = document.getElementById("nr9");
-const nr0Btn = document.getElementById("nr0");
-const addBtn = document.getElementById("add");
-const subtractBtn = document.getElementById("subtract");
-const multiplyBtn = document.getElementById("multiply");
-const divideBtn = document.getElementById("divide");
-const equalBtn = document.getElementById("equal");
+let operand1 = ""
+let operand2 = ""
+let operator = ""
+let screenResetOn = false
 
-let currentValue = 0;
-let operatorValue = 0;
-let operation = "";
-let clickedNumber = "";
-let calculatedValueString = "";
+const nr1Btn = document.getElementById("nr1")
+const nr2Btn = document.getElementById("nr2")
+const nr3Btn = document.getElementById("nr3")
+const nr4Btn = document.getElementById("nr4")
+const nr5Btn = document.getElementById("nr5")
+const nr6Btn = document.getElementById("nr6")
+const nr7Btn = document.getElementById("nr7")
+const nr8Btn = document.getElementById("nr8")
+const nr9Btn = document.getElementById("nr9")
+const nr0Btn = document.getElementById("nr0")
+const addBtn = document.getElementById("add")
+const subtractBtn = document.getElementById("subtract")
+const multiplyBtn = document.getElementById("multiply")
+const divideBtn = document.getElementById("divide")
+const equalBtn = document.getElementById("equal")
+const clearBtn = document.getElementById("clear")
+const displayEl = document.querySelector(".display-inner")
+const displayOutsideEl = document.querySelector(".display")
 
-function setClickedNrTo1AndContinue() {
-  if (operation !== "") {
-    clickedNumber = "1";
-    setCurrentValueOrOperatorValue();
-  } else {
-    displayChanges();
-  }
-}
-function setClickedNrTo2AndContinue() {
-  clickedNumber = "2";
-  setCurrentValueOrOperatorValue();
-}
-function setClickedNrTo3AndContinue() {
-  clickedNumber = "3";
-  setCurrentValueOrOperatorValue();
-}
-function setClickedNrTo4AndContinue() {
-  clickedNumber = "4";
-  setCurrentValueOrOperatorValue();
-}
-function setClickedNrTo5AndContinue() {
-  clickedNumber = "5";
-  setCurrentValueOrOperatorValue();
-}
-function setClickedNrTo6AndContinue() {
-  clickedNumber = "6";
-  setCurrentValueOrOperatorValue();
-}
-function setClickedNrTo7AndContinue() {
-  clickedNumber = "7";
-  setCurrentValueOrOperatorValue();
-}
-function setClickedNrTo8AndContinue() {
-  clickedNumber = "8";
-  setCurrentValueOrOperatorValue();
-}
-function setClickedNrTo9AndContinue() {
-  clickedNumber = "9";
-  setCurrentValueOrOperatorValue();
-}
-function setClickedNrTo0AndContinue() {
-  clickedNumber = "0";
-  setCurrentValueOrOperatorValue();
+nr1Btn.addEventListener("click", handleNumberClick)
+nr2Btn.addEventListener("click", handleNumberClick)
+nr3Btn.addEventListener("click", handleNumberClick)
+nr4Btn.addEventListener("click", handleNumberClick)
+nr5Btn.addEventListener("click", handleNumberClick)
+nr6Btn.addEventListener("click", handleNumberClick)
+nr7Btn.addEventListener("click", handleNumberClick)
+nr8Btn.addEventListener("click", handleNumberClick)
+nr9Btn.addEventListener("click", handleNumberClick)
+nr0Btn.addEventListener("click", handleNumberClick)
+addBtn.addEventListener("click", handleOperatorClick)
+subtractBtn.addEventListener("click", handleOperatorClick)
+multiplyBtn.addEventListener("click", handleOperatorClick)
+divideBtn.addEventListener("click", handleOperatorClick)
+equalBtn.addEventListener("click", handleEqualClick)
+clearBtn.addEventListener("click", handleClearClick)
+
+function handleNumberClick(e){
+ if(displayEl.textContent==="0"||screenResetOn){
+  resetDisplay()
+ }
+ displayEl.textContent+=e.target.textContent
 }
 
-function setOperationTypeToAddition() {
-  operation = "+";
-}
-function setOperationTypeToSubtraction() {
-  operation = "-";
-}
-function setOperationTypeToMultiplication() {
-  operation = "*";
-}
-function setOperationTypeToDivision() {
-  operation = "/";
+function resetDisplay(){
+  displayEl.textContent=""
+  screenResetOn = false
 }
 
-function setCurrentValueOrOperatorValue() {
-  if (operation === "") {
-    setCurrentValue(clickedNumber);
-    displayChanges(clickedNumber);
-  } else {
-    setOperatorValueAndCalculate(clickedNumber);
+function add(num1,num2) {
+  return Math.round((num1+num2)*10000)/10000
+}
+function subtract(num1,num2) {
+  return Math.round((num1-num2)*10000)/10000
+}
+function multiply(num1,num2) {
+  return Math.round((num1*num2)*10000)/10000 
+}
+function divide(num1,num2) {
+  return Math.round((num1/num2)*10000)/10000 
+}
+function operate(op,n1,n2){
+  n1=(+n1)
+  n2=(+n2)
+  switch (op) {
+    case "+":
+      return add(n1,n2)
+      
+    case "-":
+      return subtract(n1,n2)
+      
+    case "*":
+      return multiply(n1,n2)
+      
+    case "/":
+      if (n2===0) return null
+      else return divide(n1,n2)
+      
+    default:
+      return null
   }
 }
 
-function setCurrentValue(nr) {
-  currentValue = +nr;
-}
-
-function calculate(current, op, operator) {
-  if (op === "+") {
-    return current + operator;
-  } else if (op === "-") {
-    return current - operator;
-  } else if (op === "*") {
-    return current * operator;
-  } else if (op === "/") {
-    return current / operator;
-  } else {
-    alert("Invalid operation!");
+function setOperator(op){
+  switch (op) {
+    case "+":
+      operator="+"
+      break
+    case "-":
+      operator="-"
+      break
+    case "*":
+      operator="*"
+      break
+    case "/":
+      operator="/"
+      break
+    case "":
+      operator=""
+      break
+    default:
+      alert("Invalid operator")
+      break
   }
 }
 
-function displayChanges() {
-  if (operation === "" && currentValue != 0) {
-    document.getElementsByClassName("display-inner")[0].innerHTML =
-      clickedNumber;
-  } else {
-    document.getElementsByClassName("display-inner")[0].innerHTML =
-      currentValue;
-    operation = "";
-  }
+function evaluate(){
+  if(operator===""||screenResetOn)
+    return
+  operand2 = displayEl.textContent
+  displayEl.innerText = operate(operator,operand1,operand2)
+  operator = ""
 }
 
-function setOperatorValueAndCalculate(nr) {
-  operatorValue = +nr;
-
-  let calculatedValue = calculate(currentValue, operation, operatorValue);
-  currentValue = calculatedValue;
-  calculatedValueString = calculatedValue.toFixed(2);
-  // displayChanges();
-  clickedNumber = "";
+function handleOperatorClick(e){
+  if(operator!=="")
+    evaluate()
+  operand1 = displayEl.textContent
+  operator=e.target.textContent
+  screenResetOn=true
 }
-
-nr1Btn.addEventListener("click", setClickedNrTo1AndContinue);
-nr2Btn.addEventListener("click", setClickedNrTo2AndContinue);
-nr3Btn.addEventListener("click", setClickedNrTo3AndContinue);
-nr4Btn.addEventListener("click", setClickedNrTo4AndContinue);
-nr5Btn.addEventListener("click", setClickedNrTo5AndContinue);
-nr6Btn.addEventListener("click", setClickedNrTo6AndContinue);
-nr7Btn.addEventListener("click", setClickedNrTo7AndContinue);
-nr8Btn.addEventListener("click", setClickedNrTo8AndContinue);
-nr9Btn.addEventListener("click", setClickedNrTo9AndContinue);
-nr0Btn.addEventListener("click", setClickedNrTo0AndContinue);
-addBtn.addEventListener("click", setOperationTypeToAddition);
-subtractBtn.addEventListener("click", setOperationTypeToSubtraction);
-multiplyBtn.addEventListener("click", setOperationTypeToMultiplication);
-divideBtn.addEventListener("click", setOperationTypeToDivision);
-equalBtn.addEventListener("click", displayChanges);
+function handleEqualClick(){
+  evaluate()
+}
+function handleClearClick(){
+  displayEl.textContent=""
+  operand1 = ""
+  operand2 = ""
+  operator = ""
+}
