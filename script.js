@@ -39,6 +39,7 @@ divideBtn.addEventListener("click", handleOperatorClick)
 equalBtn.addEventListener("click", handleEqualClick)
 clearBtn.addEventListener("click", handleClearClick)
 pointBtn.addEventListener("click", appendPoint)
+window.addEventListener("keypress", handleKeyboardPress)
 
 function handleNumberClick(e){
  if(displayEl.textContent==="0"||screenResetOn){
@@ -58,6 +59,22 @@ function appendPoint(){
     return
   }
   displayEl.textContent += "."
+}
+function handleKeyboardPress(e){
+  if(displayEl.textContent==="0"||screenResetOn){
+    resetDisplay()
+   }
+   if((/^[0-9]/).test(e.key)){
+    displayEl.textContent += e.key
+   }else if((e.key==="+")||(e.key==="-")||(e.key==="*")||(e.key==="/")){
+    handleOperatorClick(e.key)
+   }else if(e.key==="Enter"){
+    evaluate()
+   }else if(e.key==="."){
+    appendPoint()
+   }else if(e.key==="c"){
+    handleClearClick()
+   }
 }
 
 function add(num1,num2) {
@@ -129,7 +146,11 @@ function handleOperatorClick(e){
   if(operator!=="")
     evaluate()
   operand1 = displayEl.textContent
-  operator=e.target.textContent
+  if(e.target)
+    operator=e.target.textContent
+  else{
+    operator=e
+  }
   screenResetOn=true
 }
 function handleEqualClick(){
