@@ -49,6 +49,7 @@ button {
   height: clamp(40rem, 60vw, 70rem);
   width: clamp(30rem, 50vw, 60rem);
   border: 1px solid #000;
+  box-shadow: #aaa 0px 5px 8px 6px ;
 
   display: flex;
   flex-direction: column;
