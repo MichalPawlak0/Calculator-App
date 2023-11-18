@@ -3,24 +3,23 @@ let operand2 = ""
 let operator = ""
 let screenResetOn = false
 
-const nr1Btn = document.getElementById("nr1")
-const nr2Btn = document.getElementById("nr2")
-const nr3Btn = document.getElementById("nr3")
-const nr4Btn = document.getElementById("nr4")
-const nr5Btn = document.getElementById("nr5")
-const nr6Btn = document.getElementById("nr6")
-const nr7Btn = document.getElementById("nr7")
-const nr8Btn = document.getElementById("nr8")
-const nr9Btn = document.getElementById("nr9")
-const nr0Btn = document.getElementById("nr0")
-const addBtn = document.getElementById("add")
-const subtractBtn = document.getElementById("subtract")
-const multiplyBtn = document.getElementById("multiply")
-const divideBtn = document.getElementById("divide")
-const equalBtn = document.getElementById("equal")
-const clearBtn = document.getElementById("clear")
+const nr1Btn = document.querySelector("#nr1")
+const nr2Btn = document.querySelector("#nr2")
+const nr3Btn = document.querySelector("#nr3")
+const nr4Btn = document.querySelector("#nr4")
+const nr5Btn = document.querySelector("#nr5")
+const nr6Btn = document.querySelector("#nr6")
+const nr7Btn = document.querySelector("#nr7")
+const nr8Btn = document.querySelector("#nr8")
+const nr9Btn = document.querySelector("#nr9")
+const nr0Btn = document.querySelector("#nr0")
+const addBtn = document.querySelector("#add")
+const subtractBtn = document.querySelector("#subtract")
+const multiplyBtn = document.querySelector("#multiply")
+const divideBtn = document.querySelector("#divide")
+const equalBtn = document.querySelector("#equal")
+const clearBtn = document.querySelector("#clear")
 const displayEl = document.querySelector(".display-inner")
-const displayOutsideEl = document.querySelector(".display")
 
 nr1Btn.addEventListener("click", handleNumberClick)
 nr2Btn.addEventListener("click", handleNumberClick)
@@ -43,7 +42,8 @@ function handleNumberClick(e){
  if(displayEl.textContent==="0"||screenResetOn){
   resetDisplay()
  }
- displayEl.textContent+=e.target.textContent
+ displayEl.textContent += e.target.textContent
+ console.log(e.target)
 }
 
 function resetDisplay(){
