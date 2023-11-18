@@ -19,6 +19,7 @@ const multiplyBtn = document.querySelector("#multiply")
 const divideBtn = document.querySelector("#divide")
 const equalBtn = document.querySelector("#equal")
 const clearBtn = document.querySelector("#clear")
+const pointBtn = document.querySelector("#point")
 const displayEl = document.querySelector(".display-inner")
 
 nr1Btn.addEventListener("click", handleNumberClick)
@@ -37,18 +38,26 @@ multiplyBtn.addEventListener("click", handleOperatorClick)
 divideBtn.addEventListener("click", handleOperatorClick)
 equalBtn.addEventListener("click", handleEqualClick)
 clearBtn.addEventListener("click", handleClearClick)
+pointBtn.addEventListener("click", appendPoint)
 
 function handleNumberClick(e){
  if(displayEl.textContent==="0"||screenResetOn){
   resetDisplay()
  }
  displayEl.textContent += e.target.textContent
- console.log(e.target)
 }
-
 function resetDisplay(){
   displayEl.textContent=""
   screenResetOn = false
+}
+function appendPoint(){
+  if(displayEl.textContent.includes(".")||screenResetOn)
+    return
+  if(displayEl.textContent===""){
+    displayEl.textContent += "0."
+    return
+  }
+  displayEl.textContent += "."
 }
 
 function add(num1,num2) {
