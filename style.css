@@ -132,7 +132,7 @@ button {
   align-items: center;
   justify-content: center;
   height: 100%;
-  font-size: 5vw;
+  font-size: calc(1rem+2vw);
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
@@ -150,4 +150,34 @@ button {
   border-radius: 1rem;
   font-size: clamp(3rem, 5vw, 6rem);
   background-color: #eee;
+}
+
+@media screen and (max-width:58em){
+  .calculator{
+    min-height: 80vh;
+    width: 80%;
+    font-size: calc(4rem + 1vw);
+  }
+}
+
+@media screen and (max-width:40em){
+  .container{
+    padding: 0
+  }
+  .calculator{
+    min-height: 80vh;
+    width: 100%;
+  }
+}
+
+@media screen and (max-width:30em){
+  .container{
+    padding: 20vh 0 0
+  }
+  .calculator{
+    min-height: 60vh;
+  }
+  .calculator-inputs{
+    padding: 0.5rem
+  }
 }
