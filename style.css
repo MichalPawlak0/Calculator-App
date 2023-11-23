@@ -172,7 +172,7 @@ button {
 
 @media screen and (max-width:30em){
   .container{
-    padding: 20vh 0 0
+    padding: 10vh 0 0
   }
   .calculator{
     min-height: 60vh;
