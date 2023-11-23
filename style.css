@@ -14,6 +14,7 @@ html {
 body {
   font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
   background-color: #d7d7d7;
+  color: #222
 }
 
 button {
@@ -25,6 +26,7 @@ button {
   width: 100%;
   border-radius: inherit;
   transition: all 0.08s;
+  color:inherit
 }
 .number-box:active button,
 .operator-box:active button,
